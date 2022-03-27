@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-auth.js"></script>
+    <!--========== BOX ICONS ==========-->
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+   
+    <!--========== CSS ==========-->
+    <link rel="stylesheet" href="files/css/styles.css">
+    
+    <link rel="stylesheet" href="files/css/responsive.css">
+
+
+    <title>Indifood</title>
+
+    
+</head>
+
+<body>
+
+    <!--========== SCROLL TOP ==========-->
+    <a href="#" class="scrolltop" id="scroll-top">
+        <i class='bx bx-chevron-up scrolltop__icon'></i>
+    </a>
+
+    <!--========== HEADER ==========-->
+    <header class="l-header" id="header">
+        <nav class="nav bd-container">
+            <a href="#" class="nav__logo">Indifood</a>
+
+            <div class="nav__menu" id="nav-menu">
+                
+                <ul class="nav__list">
+                    
+                    <li class="nav__item"><a href="#home" class="nav__link active-link">Home</a></li>
+                    <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
+                    <li class="nav__item"><a href="#services" class="nav__link">Services</a></li>
+                    <li class="nav__item"><a href="#menu" class="nav__link">Menu</a></li>
+                    <li class="nav__item"><a href="#contact" class="nav__link">Contact</a></li>
+                    <li class="nav__item"><a href="#" id="logout" class="nav__link">Logout</a></li>
+                    
+                    
+
+                        
+                    <li><i class='bx bx-moon change-theme' id="theme-button"></i></li>
+
+                    
+                    <li> <a id="icon-shopping-cart"><span  class='bx bx-cart'><span id="item-counter">0</span></a></li>
+                   
+                </ul>
+            </div>
+
+            <div class="nav__toggle" id="nav-toggle">
+                 <i class='bx bx-grid-alt'></i>
+            </div>
+        </nav>
+    </header>
+
+    <!--==================== CART ====================-->
+    
+    <!-- shopping cart area start -->
+    <!-- /\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\ -->
+    <!-- selected and favorite product items area start -->
+    <div class="shopping-cart-area" id="product-cart-area">
+        <div class="shopping-cart-wrap">
+            <div class="product-cart-menu">
+                <div class="cart-menu-items">
+                    <h2 id="selected-products" class="active-cart-menu">Selected Products</h2>
+                    <h2 id="favorite-products">Favorite Products</h2>
+                </div>
+
+                <div class="cart-close-btn">
+                    <button>Close</button>
+                </div>
+            </div>
+
+            <div class="cart-contents-header">
+                <div class="total-cart-items">
+                    <p id="total-selected" class="active-product-counter"><strong>Total Selected: </strong><span>No item
+                            found</span></p>
+                    <p id="total-favorite"><strong>Total Favorite: </strong><span>No item found</span></p>
+                </div>
+
+                <div class="buying-product-title">
+                    <div class="total-buying-item">
+                        <p><strong>Total Buying Items: </strong><span>0</span></p>
+                    </div>
+                    <div class="buy-items-button">
+                        <button id="buy-items">Order Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cart-contents-area shopping-cart-contents-area active-cart-content">
+                <!-- virtual selected product contents -->
+            </div>
+            <div class="cart-wishlist-area shopping-cart-contents-area">
+                <!-- virtual favorite product contents -->
+            </div>
+
+        </div>
+
+    </div>
+    <!-- selected and favorite product items area end -->
+
+
+
+    <!-- confirmation message area start -->
+    <div class="remove-confirmation-message">
+        <div class="remove-message-wrap">
+            <div class="remove-message-title">
+                <h2>Remove item confirmation message</h2>
+            </div>
+
+            <div class="remove-message-button">
+                <button id="remove-confirm-btn">Remove</button>
+                <button id="remove-cancel-btn">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="popup-shadow"></div>
+    <!-- confirmation message area end -->
+
+
+
+    <!-- buying details/shoping cart area start -->
+    <div class="buying-details-area">
+        <div class="buying-details-wrap">
+            <div class="shop-title">
+                <h1>Shopping Cart</h1>
+            </div>
+
+            <div class="shopping-details-wrap">
+                <div class="shopping-details-header">
+                    <div class="shopping-details">
+                        <div class="shop-detail product-sl">
+                            <h2>SL No.</h2>
+                        </div>
+                        <div class="shop-detail product-name">
+                            <h2>Product Name</h2>
+                        </div>
+                        <div class="shop-detail regular-price">
+                            <h2>Regular Price</h2>
+                        </div>
+                        <div class="shop-detail discount">
+                            <h2>Discount</h2>
+                        </div>
+                        <div class="shop-detail present-price">
+                            <h2>Present Price</h2>
+                        </div>
+                        <div class="shop-detail product-quantity">
+                            <h2>Quantity</h2>
+                        </div>
+                        <div class="shop-detail total-amount">
+                            <h2>Total Price</h2>
+                        </div>
+                        <div class="shop-detail remove-all-btn">
+                            <button id="remove-all-items">Remove All</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="shopping-details-content">
+                    <!-- virtual shopping details content -->
+                </div>
+            </div>
+
+            <div class="buying-details-footer">
+                <div class="calculate-buying-details">
+                    <div class="calculate-total-items">
+                        <h2>Total Items: </h2>
+                        <p><span>000</span></p>
+                    </div>
+
+                    <div class="calculate-total-weight">
+                        <h2>Total: </h2>
+                        <p><span>000</span></p>
+                    </div>
+
+                    <div class="calculate-total-amount">
+                        <h2>Total Amount: </h2>
+                        <p><span>000</span> Rs./-</p>
+                    </div>
+                </div>
+
+                <div class="confirm-order-button">
+                   <a  href="https://rzp.io/l/tUsnxzrv"><button id="confirm-order-btn">Confirm Order</button></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="close-buy-area">
+            <div  class='bx bx-x'></div>
+        </div>
+    </div>
+    <!-- buying details/shoping cart area end -->
+    <!-- /\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\ -->
+    <!-- shopping cart area end -->
+
+      
+
+    <main class="l-main">
+        <!--========== HOME ==========-->
+        <section class="home" id="home">
+            <div class="home__container bd-container bd-grid">
+                <div class="home__data" >
+                    <h1 class="home__title">Indi food</h1>
+                    <h2 class="home__subtitle">Try the best food of <br> the day.</h2>
+                    <a href="#menu" class="button">Explore</a>
+                    
+                    
+                </div>
+
+                <img src="files/img/homi.png" alt="" class="home__img">
+            </div>
+        </section>
+
+        <!--========== ABOUT ==========-->
+        <section class="about section bd-container" id="about">
+            <div class="about__container  bd-grid">
+                <div class="about__data">
+                    <span class="section-subtitle about__initial">About us</span>
+                    <h2 class="section-title about__initial">We cook the best <br> Indian foods</h2>
+                    <p class="about__description">We cook the best foods in the entire Asansol city, with excellent customer
+                        service, the best meals and at the best price, visit us.</p>
+                    <a href="#menu" class="button">Check it out</a>
+                </div>
+
+                <img src="files/img/abouti.gif" alt="" class="about__img">
+            </div>
+        </section>
+
+        <!--========== SERVICES ==========-->
+        <section class="services section bd-container" id="services">
+            <span class="section-subtitle">Offering</span>
+            <h2 class="section-title">Our amazing services</h2>
+
+            <div class="services__container  bd-grid">
+                <div class="services__content">
+                    <img src="files/img/ser1.gif" alt="">
+                    <h3 class="services__title">Excellent food</h3>
+                    <p class="services__description">We offer our clients excellent quality services for many years,
+                        with the best and delicious food in the city.</p>
+                </div>
+
+                <div class="services__content">
+                    <img src="files/img/ser2.gif" alt="">
+                    <h3 class="services__title">Fast food</h3>
+                    <p class="services__description">We offer our clients excellent quality services for many years,
+                        with the best and delicious food in the city.</p>
+                </div>
+
+                <div class="services__content">
+                    <img src="files/img/ser3.gif" alt="">
+                    <h3 class="services__title">Delivery</h3>
+                    <p class="services__description">We offer our clients excellent quality services for many years,
+                        with the best and delicious food in the city.</p>
+                </div>
+            </div>
+        </section>
+
+        <!--========== MENU ==========-->
+        <!-- featured products section start  -->
+    <div class="featured-product" id="menu">
+        <div class="section-wrap">
+            <div class="section-title">
+                <h2 class="section-title">Menu of the week</h2>
+            </div>
+
+            <div class="featured-products">
+                <div class="product-wrap apple">
+                    <div class="product-img">
+                        <img src="files/img/p1.jpg" alt="panner_img">
+                    </div>
+
+                    <div class="product-icons">
+                        <div class="add-to-favorite"><span  class='bx bx-heart' ></span></div>
+                        <p><span class="discount">18</span>% off</p>
+                    </div>
+
+                    <div class="product-description">
+                        <p class="product-name">Panner Butter</p>
+                        <p class="price">Price: <del><span>169</span>Rs./-</del> <ins><span>135</span>Rs./-</ins></p>
+                        <div class="add-to-cart-btn">
+                            <p>Add to Cart</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-wrap">
+                    <div class="product-img">
+                        <img src="files/img/p2.jpg" alt="orange_img">
+                    </div>
+
+                    <div class="product-icons">
+                        <div class="add-to-favorite"><span class='bx bx-heart'></span></div>
+                        <p><span class="discount">20</span>% off</p>
+                    </div>
+
+                    <div class="product-description">
+                        <p class="product-name">Kashmiri Pulao</p>
+                        <p class="price">Price: <del><span>209</span>Rs./-</del> <ins><span>167</span>Rs./-</ins></p>
+                        <div class="add-to-cart-btn">
+                            <p>Add to Cart</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-wrap">
+                    <div class="product-img">
+                        <img src="files/img/p3.jpg" alt="cherry_img">
+                    </div>
+
+                    <div class="product-icons">
+                        <div class="add-to-favorite"><span class='bx bx-heart'></span></div>
+                        <p><span class="discount">18</span>% off</p>
+                    </div>
+
+                    <div class="product-description">
+                        <p class="product-name">Gulab Jamun</p>
+                        <p class="price">Price: <del><span>149</span>Rs./-</del> <ins><span>122</span>Rs./-</ins></p>
+                        <div class="add-to-cart-btn">
+                            <p>Add to Cart</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-wrap">
+                    <div class="product-img">
+                        <img src="files/img/p4.jpg" alt="strawberry_img">
+                    </div>
+
+                    <div class="product-icons">
+                        <div class="add-to-favorite"><span class='bx bx-heart'></span></div>
+                        <p><span class="discount">24</span>% off</p>
+                    </div>
+
+                    <div class="product-description">
+                        <p class="product-name">Dhosa</p>
+                        <p class="price">Price: <del><span>95</span>Rs./-</del> <ins><span>72</span>Rs./-</ins></p>
+                        <div class="add-to-cart-btn">
+                            <p>Add to Cart</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-wrap">
+                    <div class="product-img">
+                        <img src="files/img/p5.jpg" alt="grape_img">
+                    </div>
+
+                    <div class="product-icons">
+                        <div class="add-to-favorite"><span class='bx bx-heart'></span></div>
+                        <p><span class="discount">22</span>% off</p>
+                    </div>
+
+                    <div class="product-description">
+                        <p class="product-name">Ice Cream</p>
+                        <p class="price">Price: <del><span>95</span>Rs./-</del> <ins><span>74</span>Rs./-</ins></p>
+                        <div class="add-to-cart-btn">
+                            <p>Add to Cart</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-wrap">
+                    <div class="product-img">
+                        <img src="files/img/p6.jpg" alt="grape_img">
+                    </div>
+
+                    <div class="product-icons">
+                        <div class="add-to-favorite"><span class='bx bx-heart'></span></div>
+                        <p><span class="discount">20</span>% off</p>
+                    </div>
+
+                    <div class="product-description">
+                        <p class="product-name">Naan Roti</p>
+                        <p class="price">Price: <del><span>80</span>Rs./-</del> <ins><span>64</span>Rs./-</ins></p>
+                        <div class="add-to-cart-btn">
+                            <p>Add to Cart</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-wrap">
+                    <div class="product-img">
+                        <img src="files/img/p7.jpg" alt="watermellon_img">
+                    </div>
+
+                    <div class="product-icons">
+                        <div class="add-to-favorite"><span class='bx bx-heart'></span></div>
+                        <p><span class="discount">12</span>% off</p>
+                    </div>
+
+                    <div class="product-description">
+                        <p class="product-name">Butter Naan</p>
+                        <p class="price">Price: <del><span>120</span>Rs./-</del> <ins><span>105</span>Rs./-</ins></p>
+                        <div class="add-to-cart-btn">
+                            <p>Add to Cart</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-wrap">
+                    <div class="product-img">
+                        <img src="files/img/p8.jpg" alt="pinapple_img">
+                    </div>
+
+                    <div class="product-icons">
+                        <div class="add-to-favorite"><span class='bx bx-heart'></span></div>
+                        <p><span class="discount">10</span>% off</p>
+                    </div>
+
+                    <div class="product-description">
+                        <p class="product-name">Veg Pizza</p>
+                        <p class="price">Price: <del><span>120</span>Rs./-</del> <ins><span>108</span>Rs./-</ins></p>
+                        <div class="add-to-cart-btn">
+                            <p>Add to Cart</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-wrap">
+                    <div class="product-img">
+                        <img src="files/img/p9.jpg" alt="coconut_img">
+                    </div>
+
+                    <div class="product-icons">
+                        <div class="add-to-favorite"><span class='bx bx-heart'></span></div>
+                        <p><span class="discount">18</span>% off</p>
+                    </div>
+
+                    <div class="product-description">
+                        <p class="product-name">Gajar Ka Halwa</p>
+                        <p class="price">Price: <del><span>160</span>Rs./-</del> <ins><span>131</span>Rs./-</ins></p>
+                        <div class="add-to-cart-btn">
+                            <p>Add to Cart</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-wrap">
+                    <div class="product-img">
+                        <img src="files/img/p10.jpg" alt="nut_img">
+                    </div>
+
+                    <div class="product-icons">
+                        <div class="add-to-favorite"><span class='bx bx-heart'></span></div>
+                        <p><span class="discount">24</span>% off</p>
+                    </div>
+
+                    <div class="product-description">
+                        <p class="product-name">Idli Sambar</p>
+                        <p class="price">Price: <del><span>139</span>Rs./-</del> <ins><span>105</span>Rs./-</ins></p>
+                        <div class="add-to-cart-btn">
+                            <p>Add to Cart</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-wrap">
+                    <div class="product-img">
+                        <img src="files/img/p11.jpg" alt="blueberry_img">
+                    </div>
+
+                    <div class="product-icons">
+                        <div class="add-to-favorite"><span class='bx bx-heart'></span></div>
+                        <p><span class="discount">22</span>% off</p>
+                    </div>
+
+                    <div class="product-description">
+                        <p class="product-name">Chicken Chili</p>
+                        <p class="price">Price: <del><span>260</span>Rs./-</del> <ins><span>202</span>Rs./-</ins></p>
+                        <div class="add-to-cart-btn">
+                            <p>Add to Cart</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-wrap">
+                    <div class="product-img">
+                        <img src="files/img/p12.jpg" alt="banana_img">
+                    </div>
+
+                    <div class="product-icons">
+                        <div class="add-to-favorite"><span class='bx bx-heart'></span></div>
+                        <p><span class="discount">16</span>% off</p>
+                    </div>
+
+                    <div class="product-description">
+                        <p class="product-name">Chicken Kasa</p>
+                        <p class="price">Price: <del><span>190</span>Rs./-</del> <ins><span>159</span>Rs./-</ins></p>
+                        <div class="add-to-cart-btn">
+                            <p>Add to Cart</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-wrap">
+                    <div class="product-img">
+                        <img src="files/img/p13.jpg" alt="mango_img">
+                    </div>
+
+                    <div class="product-icons">
+                        <div class="add-to-favorite"><span class='bx bx-heart'></span></div>
+                        <p><span class="discount">26</span>% off</p>
+                    </div>
+
+                    <div class="product-description">
+                        <p class="product-name">Veg Biryani</p>
+                        <p class="price">Price: <del><span>130</span>Rs./-</del> <ins><span>96</span>Rs./-</ins></p>
+                        <div class="add-to-cart-btn">
+                            <p>Add to Cart</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-wrap">
+                    <div class="product-img">
+                        <img src="files/img/p14.jpg" alt="lemon_img">
+                    </div>
+
+                    <div class="product-icons">
+                        <div class="add-to-favorite"><span class='bx bx-heart'></span></div>
+                        <p><span class="discount">12</span>% off</p>
+                    </div>
+
+                    <div class="product-description">
+                        <p class="product-name">Chicken Karahi</p>
+                        <p class="price">Price: <del><span>195</span>Rs./-</del> <ins><span>171</span>Rs./-</ins></p>
+                        <div class="add-to-cart-btn">
+                            <p>Add to Cart</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-wrap">
+                    <div class="product-img">
+                        <img src="files/img/p15.jpg" alt="papaya_img">
+                    </div>
+
+                    <div class="product-icons">
+                        <div class="add-to-favorite"><span class='bx bx-heart'></span></div>
+                        <p><span class="discount">16</span>% off</p>
+                    </div>
+
+                    <div class="product-description">
+                        <p class="product-name">Chicken Biryani</p>
+                        <p class="price">Price: <del><span>220</span>Rs./-</del> <ins><span>184</span>Rs./-</ins></p>
+                        <div class="add-to-cart-btn">
+                            <p>Add to Cart</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- featured products section end  -->
+
+
+
+        <!--===== TRACK ORDER =======-->
+        <section class="track section bd-container">
+            <div class="track__container bd-grid">
+                <div class="track__data">
+                    <span class="section-subtitle app__initial">Track</span>
+                    <h2 class="section-title app__initial">Track your order</h2>
+                    <p class="track__description">Track down your order from here, you can make online payments or cash on Delivery for our tasty foods
+                        and, see your deliveries on the way and much more.</p>
+                    <div class="track__stores">
+                        <a href="https://goo.gl/maps/zV8KYezknX5AHDtY7" target="blank" class="button">Track Order</a>
+                    </div>
+                </div>
+
+                <img src="files/img/track.gif" alt="" class="track__img">
+            </div>
+        </section>
+
+        <!--===== CONTACT =====-->
+        <section class="contact section" id="contact">
+            <h2 class="section-title">Contact</h2>
+
+            <div class="contact__container bd-grid">
+                <div class="contact__img">
+                    <img src="files/img/contact.gif" alt="">
+                </div>
+                
+
+                <form action="https://formspree.io/f/mlezlzll" method="post" class="contact__form">
+                    <h3 class="contact__subtitle">Put Your Details:</h3> 
+                    <input type="text" name="Name" id="Name" placeholder="Name" class="contact__input">
+                    <input type="mail" name="Sender" id="Sender" placeholder="Email" class="contact__input">
+                    <textarea name="Message" id="Message" placeholder="Message" cols="0" rows="10" class="contact__input"></textarea>
+                    <button type="submit" class="contact__button button">Send Message</button>
+                    <!-- <input type="button" class="btn btn-contact" onclick="sendmail();"  value="Send Message"> -->
+                </form>
+            </div>
+        </section>
+
+    <!--========== FOOTER ==========-->
+    <footer class="footer section bd-container">
+        <div class="footer__container bd-grid">
+            <div class="footer__content">
+                <a href="#" class="footer__logo">Indi Food</a>
+                <span class="footer__description">Restaurant</span>
+                <div>
+                    <a href="https://www.facebook.com/profile.php?id=100068030463032" target="blank" class="footer__social"><i class='bx bxl-facebook'></i></a>
+                    <a href="https://www.instagram.com/surajme11/" target="blank" class="footer__social"><i class='bx bxl-instagram'></i></a>
+                    <a href="https://twitter.com/SurajMe71387740" target="blank" class="footer__social"><i class='bx bxl-twitter'></i></a>
+                    
+                
+                </div>
+            </div>
+
+        
+            <div class="footer__content">
+                <h3 class="footer__title">Services</h3>
+                <ul>
+                    <li><a href="#services" class="footer__link">Delivery</a></li>
+                    <li><a href="#menu" class="footer__link">Pricing</a></li>
+                    <li><a href="#services" class="footer__link">Fast food</a></li>
+                </ul>
+            </div>
+
+            <div class="footer__content">
+                <h3 class="footer__title">Information</h3>
+                <ul>
+                    <li><a href="#contact" class="footer__link">Contact us</a></li>
+                    <li><a href="#services" class="footer__link">Privacy policy</a></li>
+                    <li><a href="#about" class="footer__link">Terms of services</a></li>
+                </ul>
+            </div>
+
+            <div class="footer__content">
+                <h3 class="footer__title">Address</h3>
+                <ul>
+                    <li>Asansol - West Bengal.</li>
+                    <li>9064086471</li>
+                    <li>surajmehta119@email.com</li>
+                </ul>
+            </div>
+        </div>
+
+        <p class="footer__copy">(2021) All right reserved. > Suraj Kr. Mehta.💚</p>
+    </footer>
+
+    <!--========== SCROLL REVEAL ==========-->
+    <script src="https://unpkg.com/scrollreveal"></script>
+    
+
+
+    <!--========== MAIN JS & FAIRBASE==========-->
+    
+    <script src="files/js/main.js"></script>
+    <script src="./files/js/loggedin.js"></script>
+    <script src="files/js/script.js"></script>
+    <script src="app.js"></script>
+
+<!--===============Contact to mail connection================-->
+
+<script
+src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+crossorigin="anonymous"
+></script>
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+crossorigin="anonymous"
+></script>
+<script
+src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+crossorigin="anonymous"
+></script>
+</body>
+
+</html>

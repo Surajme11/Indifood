@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-auth.js"></script>
+    <!--========== BOX ICONS ==========-->
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+
+    <!--========== CSS ==========-->
+    <link rel="stylesheet" href="files/css/styles.css">
+
+    <title>Indifood Login</title>
+</head>
+
+<body>
+
+    <!--========== SCROLL TOP ==========-->
+    <a href="#" class="scrolltop" id="scroll-top">
+        <i class='bx bx-chevron-up scrolltop__icon'></i>
+    </a>
+
+    <!--========== HEADER ==========-->
+    <header class="l-header" id="header">
+        <nav class="nav bd-container">
+            <a href="#" class="nav__logo">Indifood</a>
+
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="#home" class="nav__link active-link">Home</a></li>
+                    <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
+                    <li class="nav__item"><a href="#login" class="nav__link">Login</a></li>
+
+                        
+                    <li><i class='bx bx-moon change-theme' id="theme-button"></i></li>
+                </ul>
+            </div>
+
+            <div class="nav__toggle" id="nav-toggle">
+                 <i class='bx bx-grid-alt'></i>
+            </div>
+        </nav>
+    </header>
+
+    <main class="l-main">
+        <!--========== HOME ==========-->
+        <section class="home" id="home">
+            <div class="home__container bd-container bd-grid">
+                <div class="home__data">
+                    <h1 class="home__title">Indi food</h1>
+                    <h2 class="home__subtitle">Try the best food of <br> the day.</h2>
+                    <a href="#login" class="button">Order Now</a>
+
+                    
+                </div>
+
+                <img src="files/img/homi.png" alt="" class="home__img">
+            </div>
+        </section>
+
+         <!--===== ABOUT =======-->
+         <section class="about section bd-container" id="about">
+            <h2 class="section-title">About</h2>
+            <div class="about__container bd-grid">
+                <div class="about__data">
+                    <span class="section-subtitle">About Indifood</span>
+                    <p class="about__description">If you don't have an account on Indifood than firstly you have to register yourself to get a tasty Indian food, you can make payment or we also have cash on Delivery, Just order the foods
+                         and, see your deliveries on the way and much more.</p>
+                    
+                </div>
+
+                <img src="files/img/home login.gif" alt="" class="about__img">
+            </div>
+        </section>
+
+        <!--=================Login=====================-->
+        <section>
+            <h2 class="section-title">Login & Register</h2>
+        <div class="wrapper fadeInDown">
+            <div id="formContent">
+                <!-- Tabs Titles -->
+                <h2 class="active" id="loginBtn">Login</h2>
+                <h2 class="inactive underlineHover" id="registerBtn">Register</h2>
+
+                <!-- Login Form -->
+                <form>
+                <input type="name" id="login" class="fadeIn second" placeholder="username">
+                <input type="password" id="password" class="fadeIn third" placeholder="password">
+                <input type="submit" class="fadeIn fourth" value="Login" id="submitBtn">
+                </form>
+            </div>
+        </div>
+        <script src="./files/js/index.js"></script>
+        </section>
+
+    <!--========== FOOTER ==========-->
+    <footer class="footer section bd-container">
+        <p class="footer__copy">(2021) All right reserved. > Suraj Kr. Mehta.💚</p>
+    </footer>
+
+    <!--========== SCROLL REVEAL ==========-->
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="files/js/main.js"></script>
+    <script src="files/js/loggedin.js"></script>
+    
+    
+</body>
+
+</html>
