@@ -1,13 +1,9 @@
 # Indifood
 
 I have made a food ordering web application which is known as INDIFOOD.
-
-In this project I'm using HTML,CSS,JAVASCRIPT and Firebase for login and register authentication purpose.
-
+In this project I'm using HTML, CSS, JAVASCRIPT and FIREBASE for login and register authentication purpose.
 So basically it is a frontend project and i'm using firebase as a database.
-
 After the register and login process you will enter the main website where you can see our
-
 food menu, details and much more.
 
 # Functionality
