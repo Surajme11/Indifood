@@ -6,7 +6,7 @@ So basically it is a frontend project and i'm using firebase as a database.
 After the register and login process you will enter the main website where you can see our
 food menu, details and much more.
 
-# Functionality
+# Functionalities
 
 1. Dark/light mode.
 2. Register & Login auth.
